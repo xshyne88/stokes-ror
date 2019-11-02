@@ -18,7 +18,6 @@ describe "Lands Query", :graphql do
       land = create(:land, name: "Land 1")
 
       result = execute query
-      pp result
 
       lands_result = result[:data][:lands][:edges].pluck(:node)
       expect(lands_result).to include(name: land.name)
