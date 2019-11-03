@@ -11,6 +11,7 @@ class ApplicationPolicy
   end
 
   def admin?
+    pp "CHJECKING IF USER IS ADMIn"
     user.admin?
   end
 end

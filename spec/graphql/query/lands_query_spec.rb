@@ -17,7 +17,7 @@ describe "Lands Query", :graphql do
     it "returns a list of lands" do
       land = create(:land, name: "Land 1")
 
-      result = execute query
+      result = execute query, as: build(:user)
 
       lands_result = result[:data][:lands][:edges].pluck(:node)
       expect(lands_result).to include(name: land.name)

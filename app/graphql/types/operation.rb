@@ -29,9 +29,9 @@ module Types
       return if can_access?(current_user, record)
 
       if current_user.guest?
-        LibrarianSchema.authenticated_error
+        StokesGraveyardSchema.authenticated_error
       else
-        LibrarianSchema.authorized_error
+        StokesGraveyardSchema.authorized_error
       end
     end
 
@@ -44,7 +44,7 @@ module Types
     def rescue_resolver
       yield
     rescue ::ActiveRecord::RecordNotFound
-      LibrarianSchema.record_not_found_error
+      StokesGraveyardSchema.record_not_found_error
     end
 
     class_methods do
