@@ -1,18 +1,11 @@
 class GraphqlController < ApplicationController
-  # If accessing from outside this domain, nullify the session
-  # This allows for outside API access while preventing CSRF attacks,
-  # but you'll have to authenticate your user separately
-  # protect_from_forgery with: :null_session
-
   def execute
-    variables = ensure_hash(params[:variables])
-    query = params[:query]
-    operation_name = params[:operationName]
-    context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
-    }
-    result = StokesGraveyardSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = StokesGraveyardSchema.execute(
+      params[:query],
+      variables: ensure_hash(params[:variables]),
+      context: {current_user: current_user},
+      operation_name: params[:operationName]
+    )
     render json: result
   rescue => e
     raise e unless Rails.env.development?
@@ -21,7 +14,6 @@ class GraphqlController < ApplicationController
 
   private
 
-  # Handle form data, JSON body, or a blank value
   def ensure_hash(ambiguous_param)
     case ambiguous_param
     when String
@@ -39,10 +31,20 @@ class GraphqlController < ApplicationController
     end
   end
 
+  def current_user
+    TokenAuthentication.new(
+      token_string: request.headers["HTTP_AUTHORIZATION"]
+    ).authenticate
+  end
+
+  def headers
+    request.headers
+  end
+
   def handle_error_in_development(e)
     logger.error e.message
     logger.error e.backtrace.join("\n")
 
-    render json: { error: { message: e.message, backtrace: e.backtrace }, data: {} }, status: 500
+    render json: {error: {message: e.message, backtrace: e.backtrace}, data: {}}, status: 500
   end
 end
