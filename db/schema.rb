@@ -22,9 +22,11 @@ ActiveRecord::Schema.define(version: 2019_11_03_152704) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.boolean "admin"
-    t.boolean "active"
+    t.string "email", null: false
+    t.string "password_digest", null: false
+    t.boolean "active", default: true, null: false
+    t.boolean "admin", default: false, null: false
+    t.integer "token_version", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

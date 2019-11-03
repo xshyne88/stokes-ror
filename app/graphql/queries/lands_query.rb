@@ -1,7 +1,7 @@
 module Queries
   class LandsQuery < Types::BaseResolver
     type Outputs::LandType.connection_type, null: false
-    # policy ApplicationPolicy, :logged_in?
+    policy ApplicationPolicy, :admin?
 
     def resolve
       Land.all
