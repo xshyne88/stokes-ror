@@ -29,7 +29,6 @@ describe "Sign In User Mutation API", :graphql do
           password: "tester12",
         },
       }
-      pp result
 
       sign_in_user = result[:data][:signInUser]
       email = sign_in_user[:user][:email]

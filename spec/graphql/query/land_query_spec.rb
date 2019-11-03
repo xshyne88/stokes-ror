@@ -16,8 +16,7 @@ describe "Land Query", :graphql do
       land = create(:land)
       land_id = global_id(land, Outputs::LandType)
 
-      result = execute query, variables: { landId: land_id }
-      pp result
+      result = execute query, as: build(:user), variables: { landId: land_id }
 
       expect(result[:data][:land]).to include(id: land_id)
     end
