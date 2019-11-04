@@ -28,6 +28,7 @@ jobs:
           
           rbenv install 2.6.5
           rbenv global 2.6.5
+          gem install rails
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install
