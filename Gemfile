@@ -14,7 +14,6 @@ gem "dotenv-rails"
 gem "graphql-batch"
 gem "rubocop"
 gem "bcrypt"
-gem "puma", "~> 3.11"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
