@@ -1,6 +1,6 @@
 module Queries
-  class Duties < Types::BaseResolver
-    description "query for a single duty by ID"
+  class DutiesQuery < Types::BaseResolver
+    description "fetch all duties"
     type Outputs::DutyType.connection_type, null: false
 
     policy ApplicationPolicy, :logged_in?

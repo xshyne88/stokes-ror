@@ -1,6 +1,6 @@
 module Queries
   class LandsQuery < Types::BaseResolver
-    description "query for a single land by ID"
+    description "get all lands"
     type Outputs::LandType.connection_type, null: false
 
     policy ApplicationPolicy, :logged_in?
