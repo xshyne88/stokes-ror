@@ -11,5 +11,5 @@ User.create(
 )
 
 Land.create(name: "Land CD Outer", latitude: "28.51356", longitude: "-81.42964874797077")
-Land.create(name: "Land 2")
-Land.create(name: "Land 3")
+Land.create(name: "Land CD Inner", latitude: "28.5136", longitude: "-81.4288")
+Land.create(name: "Land EF", latitude: "28.5138", longitude: "-81.4284")
