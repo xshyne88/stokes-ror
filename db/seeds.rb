@@ -10,6 +10,6 @@ User.create(
   password: "abc12345"
 )
 
-Land.create(name: "Land CD Outer", latitude="28.51356", longitude="-81.42964874797077")
+Land.create(name: "Land CD Outer", latitude: "28.51356", longitude: "-81.42964874797077")
 Land.create(name: "Land 2")
 Land.create(name: "Land 3")
