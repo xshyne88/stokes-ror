@@ -2,7 +2,7 @@ class CredentialAuthentication
   def initialize(email:, password:)
     @email = email
     @password = password
-  end
+ end
 
   def authenticate
     if user&.authenticate(password)

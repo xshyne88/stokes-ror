@@ -4,7 +4,6 @@ RSpec.describe Duty, type: :model do
   describe ".complete?" do
     it "queries the completedAt field via complete" do
       duty = create(:duty)
-      pp duty
 
       expect(duty.completed?).to be(false)
     end

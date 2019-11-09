@@ -14,5 +14,14 @@ describe Land, type: :model do
 
       expect(duplicate_land).not_to be_valid
     end
+    it "properly stores lat and long" do
+      latitude = "28.51356"
+      longitude = "-81.42964874797077"
+      land = create(:land, latitude: latitude, longitude: longitude)
+
+      expect(land).to be_valid
+      expect(land.reload.longitude).to eq(longitude)
+      expect(land.reload.latitude).to eq(latitude)
+    end
   end
 end

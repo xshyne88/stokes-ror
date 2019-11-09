@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2019_11_04_222927) do
 
   create_table "lands", force: :cascade do |t|
     t.string "name"
+    t.string "longitude"
+    t.string "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
