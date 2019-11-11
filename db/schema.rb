@@ -24,13 +24,14 @@ ActiveRecord::Schema.define(version: 2019_11_04_222927) do
   end
 
   create_table "land_duties", force: :cascade do |t|
-    t.bigint "lands_id"
-    t.bigint "duties_id"
+    t.bigint "land_id"
+    t.bigint "duty_id"
+    t.integer "estimated_days"
     t.datetime "completed_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["duties_id"], name: "index_land_duties_on_duties_id"
-    t.index ["lands_id"], name: "index_land_duties_on_lands_id"
+    t.index ["duty_id"], name: "index_land_duties_on_duty_id"
+    t.index ["land_id"], name: "index_land_duties_on_land_id"
   end
 
   create_table "lands", force: :cascade do |t|
@@ -51,6 +52,6 @@ ActiveRecord::Schema.define(version: 2019_11_04_222927) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "land_duties", "duties", column: "duties_id"
-  add_foreign_key "land_duties", "lands", column: "lands_id"
+  add_foreign_key "land_duties", "duties"
+  add_foreign_key "land_duties", "lands"
 end

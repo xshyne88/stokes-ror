@@ -1,10 +1,11 @@
-class CreateLandDuties < ActiveRecord::Migration[6.0]
+class CreateUserLandDuties < ActiveRecord::Migration[6.0]
   def change
-    create_table :land_duties do |t|
+    create_table :user_land_duties do |t|
+      t.references :user, foreign_key: true
       t.references :land, foreign_key: true
       t.references :duty, foreign_key: true
+      t.string :notes
 
-      t.integer :estimated_days
       t.datetime :completed_at
 
       t.timestamps

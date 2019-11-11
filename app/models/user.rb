@@ -2,6 +2,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :password, length: {minimum: 8}, allow_nil: true
 
+  has_many :user_land_duties
+
   scope :active, -> { where(active: true) }
 
   has_secure_password
