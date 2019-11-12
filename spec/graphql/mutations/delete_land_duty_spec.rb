@@ -19,7 +19,6 @@ describe "Delete LandDuty Mutation", :graphql do
       }
 
       result = execute query, as: build(:user), variables: {input: input}
-      pp result
 
       success = result[:data][:deleteLandDuty][:success]
       expect(LandDuty.count).to eq(0)

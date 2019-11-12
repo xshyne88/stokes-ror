@@ -5,7 +5,6 @@ class CreateLandDuties < ActiveRecord::Migration[6.0]
       t.references :duty, foreign_key: true
 
       t.integer :estimated_days
-      t.datetime :completed_at
 
       t.timestamps
     end
