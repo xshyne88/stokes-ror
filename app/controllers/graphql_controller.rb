@@ -1,5 +1,6 @@
 class GraphqlController < ApplicationController
   def execute
+    PaperTrail.request.whodunnit = current_user.id if current_user
     result = StokesGraveyardSchema.execute(
       params[:query],
       variables: ensure_hash(params[:variables]),

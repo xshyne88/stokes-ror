@@ -1,4 +1,6 @@
 class UserLandDuty < ApplicationRecord
+  has_paper_trail
+
   belongs_to :user
   belongs_to :land_duty
 
