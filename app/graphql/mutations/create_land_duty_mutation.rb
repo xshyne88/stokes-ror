@@ -13,7 +13,6 @@ module Mutations
     policy ApplicationPolicy, :logged_in?
 
     def authorized_resolve
-      pp input
       land_duty = LandDuty.new(input.to_h)
 
       if land_duty.save
