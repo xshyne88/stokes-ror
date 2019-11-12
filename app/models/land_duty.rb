@@ -3,4 +3,6 @@ class LandDuty < ApplicationRecord
   
   belongs_to :land
   belongs_to :duty
+
+  audited associated_with: :land
 end
