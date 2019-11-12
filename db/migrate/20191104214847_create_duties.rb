@@ -3,7 +3,7 @@ class CreateDuties < ActiveRecord::Migration[6.0]
     create_table :duties do |t|
       t.string :name
       t.string :description
-      t.datetime :completed_at, default: nil
+      t.integer :estimated_time
 
       t.timestamps
     end

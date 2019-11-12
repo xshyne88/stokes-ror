@@ -3,6 +3,5 @@ FactoryBot.define do
     land
     duty
     estimated_days { 14 }
-    completed_at { DateTime.now }
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_222927) do
+ActiveRecord::Schema.define(version: 2019_11_11_233150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_11_04_222927) do
   create_table "duties", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.datetime "completed_at"
+    t.integer "estimated_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -42,6 +42,25 @@ ActiveRecord::Schema.define(version: 2019_11_04_222927) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.text "body"
+    t.string "noteable_type", null: false
+    t.bigint "noteable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["noteable_type", "noteable_id"], name: "index_notes_on_noteable_type_and_noteable_id"
+  end
+
+  create_table "user_land_duties", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "land_duty_id"
+    t.datetime "completed_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["land_duty_id"], name: "index_user_land_duties_on_land_duty_id"
+    t.index ["user_id"], name: "index_user_land_duties_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -54,4 +73,6 @@ ActiveRecord::Schema.define(version: 2019_11_04_222927) do
 
   add_foreign_key "land_duties", "duties"
   add_foreign_key "land_duties", "lands"
+  add_foreign_key "user_land_duties", "land_duties"
+  add_foreign_key "user_land_duties", "users"
 end

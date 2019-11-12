@@ -9,7 +9,6 @@ describe "Create Duty Mutation", :graphql do
             duty {
               name
               description
-              completedAt
               }
             }
           }

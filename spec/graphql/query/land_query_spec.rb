@@ -44,4 +44,33 @@ describe "Land Query", :graphql do
       expect(result[:data][:land]).to include(id: land_id, name: name, latitude: lat, longitude: long)
     end
   end
+
+  describe "land duty meta data" do
+    query = 
+      <<-'GRAPHQL'
+        query($landId: ID!) {
+          land(landId: $landId) {
+            id
+            landDuties {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+          }
+        }
+      GRAPHQL
+    it "displays all the duties associated with it" do
+      land = create(:land)
+      land_duty1 = create(:land_duty, land: land)
+      land_duty2 = create(:land_duty, land: land)
+      user = create(:user)
+
+      result = execute query, as: build(:user, admin: true), variables: { landId: global_id(land, Outputs::LandType) }
+
+      land_duties = result[:data][:land][:landDuties][:edges]
+      expect(land_duties.count).to eq(2)
+    end
+  end
 end

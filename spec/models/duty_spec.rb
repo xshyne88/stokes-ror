@@ -1,20 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe Duty, type: :model do
+RSpec.describe UserLandDuty, type: :model do
   describe ".complete?" do
     it "queries the completedAt field via complete" do
-      duty = create(:duty)
+      user_land_duty = create(:user_land_duty)
 
-      expect(duty.completed?).to be(false)
+      expect(user_land_duty.completed?).to be(false)
     end
   end
+
   describe ".mark_complete" do
     it "marks itself complete" do
-      duty = create(:duty)
+      user_land_duty = create(:user_land_duty)
 
-      duty.mark_complete
+      user_land_duty.mark_complete
 
-      expect(duty.reload.completed?).to be(true)
+      expect(user_land_duty.reload.completed?).to be(true)
     end
   end
 end
