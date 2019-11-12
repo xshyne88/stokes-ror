@@ -5,6 +5,8 @@ module Types
     field :refresh_tokens, resolver: Mutations::RefreshTokensMutation
     field :update_password, resolver: Mutations::UpdatePasswordMutation
     field :create_user, resolver: Mutations::CreateUserMutation
+    field :create_land_duty, resolver: Mutations::CreateLandDutyMutation
+    field :create_user_land_duty, resolver: Mutations::CreateUserLandDutyMutation
     # field :send_reset_password, resolver: SendResetPasswordMutation
     # field :reset_password, resolver: ResetPasswordMutation
     # field :suspend_user, resolver: SuspendUserMutation

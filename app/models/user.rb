@@ -3,6 +3,7 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 8}, allow_nil: true
 
   has_many :user_land_duties
+  has_many :notes, as: :noteable
 
   scope :active, -> { where(active: true) }
 

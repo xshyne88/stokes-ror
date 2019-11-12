@@ -2,6 +2,8 @@ class UserLandDuty < ApplicationRecord
   belongs_to :user
   belongs_to :land_duty
 
+  has_many :notes, as: :noteable
+
   def mark_complete
     update(completed_at: DateTime.now)
   end
