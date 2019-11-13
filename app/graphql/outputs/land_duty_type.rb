@@ -8,6 +8,7 @@ module Outputs
     field :duty, Outputs::DutyType, null: true
     field :estimated_days, Integer, null: true
     field :completed_at, GraphQL::Types::ISO8601DateTime, null: true
+    field :user_land_duties, Outputs::UserLandDutyType.connection_type, null: true
 
     def estimated_days
       @object.estimated_days
@@ -19,6 +20,10 @@ module Outputs
 
     def land
       Loaders::AssociationLoader.for(LandDuty, :land).load(@object)
+    end
+
+    def user_land_duties
+      Loaders::AssociationLoader.for(LandDuty, :user_land_duties).load(@object)
     end
 
     def self.loads(id)
