@@ -8,7 +8,7 @@ module Outputs
     field :duty, Outputs::DutyType, null: true
     field :estimated_days, Integer, null: true
     field :completed_at, GraphQL::Types::ISO8601DateTime, null: true
-    field :user_land_duties, Outputs::UserLandDutyType, null: true
+    field :user_land_duties, Outputs::UserLandDutyType.connection_type, null: true
 
     def estimated_days
       @object.estimated_days
