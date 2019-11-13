@@ -15,9 +15,9 @@ module Mutations
       land_duty = UserLandDuty.new(input.to_h)
 
       if land_duty.save
-        {land_duty: land_duty, errors: []}
+        {user_land_duty: land_duty, errors: []}
       else
-        {land_duty: nil, errors: land_duty.errors}
+        {user_land_duty: nil, errors: land_duty.errors}
       end
     end
   end
