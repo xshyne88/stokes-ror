@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 2019_11_11_233150) do
     t.bigint "land_id"
     t.bigint "duty_id"
     t.integer "estimated_days"
-    t.datetime "completed_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["duty_id"], name: "index_land_duties_on_duty_id"
