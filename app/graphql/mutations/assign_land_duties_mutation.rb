@@ -15,13 +15,5 @@ module Mutations
 
       {land: input.land.reload, errors: []}
     end
-
-    private
- 
-    def decode_duty_ids(ids)
-      ids.map do |id|
-        GraphQL::Schema::UniqueWithinType.decode(id).second.to_i
-      end
-    end
   end
 end

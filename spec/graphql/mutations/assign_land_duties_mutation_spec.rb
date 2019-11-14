@@ -34,7 +34,6 @@ describe "Create User Mutation", :graphql do
           dutyIds: [duty2, duty3].map { |d| g_id(d) }
         }
       }
-      pp result
 
       mutated_land = result[:data][:assignLandDuties][:land]
       expect(mutated_land[:landDuties][:edges].count).to eq(2)
