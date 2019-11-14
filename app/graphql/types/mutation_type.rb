@@ -10,6 +10,7 @@ module Types
     field :delete_user_land_duty, resolver: Mutations::DeleteUserLandDutyMutation
     field :update_land_duty, resolver: Mutations::UpdateLandDutyMutation
     field :delete_land_duty, resolver: Mutations::DeleteLandDutyMutation
+    field :assign_land_duties, resolver: Mutations::AssignLandDutiesMutation
     # field :send_reset_password, resolver: SendResetPasswordMutation
     # field :reset_password, resolver: ResetPasswordMutation
     # field :suspend_user, resolver: SuspendUserMutation
