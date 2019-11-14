@@ -1,4 +1,4 @@
-class UserLandDuty < ApplicationRecord
+class CompletedDuty < ApplicationRecord
   audited associated_with: :land_duty
 
   belongs_to :user

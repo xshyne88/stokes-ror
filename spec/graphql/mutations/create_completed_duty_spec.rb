@@ -1,12 +1,12 @@
 require "rails_helper"
 
-describe "Create UserLandDuty Mutation", :graphql do
-  describe "createUserLandDuty" do
+describe "Create CompletedDuty Mutation", :graphql do
+  describe "createCompletedDuty" do
     let(:query) do
       <<~'GRAPHQL'
-        mutation($input: CreateUserLandDutyInput!) {
-          createUserLandDuty(input: $input) {
-            userLandDuty {
+        mutation($input: CreateCompletedDutyInput!) {
+          createCompletedDuty(input: $input) {
+            CompletedDuty {
               id
               }
             }
@@ -14,7 +14,7 @@ describe "Create UserLandDuty Mutation", :graphql do
       GRAPHQL
     end
 
-    it "creates a new user_land_duty" do
+    it "creates a new completed_duty" do
       input = {
         userId: global_id(create(:user), Outputs::UserType),
         landDutyId: global_id(create(:land_duty), Outputs::LandDutyType)
@@ -22,8 +22,8 @@ describe "Create UserLandDuty Mutation", :graphql do
 
       result = execute query, as: build(:user), variables: {input: input}
 
-      create_user_land_duty = result[:data][:createUserLandDuty]
-      expect(UserLandDuty.count).to eq(1)
+      create_completed_duty = result[:data][:createCompletedDuty]
+      expect(CompletedDuty.count).to eq(1)
     end
   end
 end

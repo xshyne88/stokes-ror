@@ -6,8 +6,8 @@ module Types
     field :update_password, resolver: Mutations::UpdatePasswordMutation
     field :create_user, resolver: Mutations::CreateUserMutation
     field :create_land_duty, resolver: Mutations::CreateLandDutyMutation
-    field :create_user_land_duty, resolver: Mutations::CreateUserLandDutyMutation
-    field :delete_user_land_duty, resolver: Mutations::DeleteUserLandDutyMutation
+    field :create_completed_duty, resolver: Mutations::CreateCompletedDutyMutation
+    field :delete_completed_duty, resolver: Mutations::DeleteCompletedDutyMutation
     field :update_land_duty, resolver: Mutations::UpdateLandDutyMutation
     field :delete_land_duty, resolver: Mutations::DeleteLandDutyMutation
     field :assign_land_duties, resolver: Mutations::AssignLandDutiesMutation

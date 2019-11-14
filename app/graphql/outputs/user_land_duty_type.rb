@@ -1,5 +1,5 @@
 module Outputs
-  class UserLandDutyType < Types::BaseObject
+  class CompletedDutyType < Types::BaseObject
     implements Types::ActiveRecord
 
     global_id_field :id
@@ -8,15 +8,15 @@ module Outputs
     field :completed_at, GraphQL::Types::ISO8601DateTime, null: true
 
     def land_duty
-      Loaders::AssociationLoader.for(UserLandDuty, :land_duty).load(@object)
+      Loaders::AssociationLoader.for(CompletedDuty, :land_duty).load(@object)
     end
 
     def user
-      Loaders::AssociationLoader.for(UserLandDuty, :user).load(@object)
+      Loaders::AssociationLoader.for(CompletedDuty, :user).load(@object)
     end
 
     def self.loads(id)
-      UserLandDuty.find(id)
+      CompletedDuty.find(id)
     end
   end
 end
