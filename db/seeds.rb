@@ -10,7 +10,12 @@ User.create(
   password: 'abc12345'
 )
 
-# PaperTrail.request.whodunnit = '1'
+User.create(
+  email: 'zhenson1989@gmail.com',
+  password: 'abc12345',
+  admin: true
+)
+
 
 cdi = Land.create(name: 'CD Outer', latitude: '28.51356', longitude: '-81.42964874797077')
 cdo = Land.create(name: 'CD Inner', latitude: '28.5136', longitude: '-81.4288')
