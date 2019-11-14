@@ -37,9 +37,20 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.index ["user_id", "user_type"], name: "user_index"
   end
 
+  create_table "completed_duties", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "land_duty_id"
+    t.datetime "completed_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["land_duty_id"], name: "index_completed_duties_on_land_duty_id"
+    t.index ["user_id"], name: "index_completed_duties_on_user_id"
+  end
+
   create_table "duties", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.string "icon", default: "tasks"
     t.integer "estimated_days", default: 14
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -73,16 +84,6 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.index ["noteable_type", "noteable_id"], name: "index_notes_on_noteable_type_and_noteable_id"
   end
 
-  create_table "user_land_duties", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "land_duty_id"
-    t.datetime "completed_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["land_duty_id"], name: "index_user_land_duties_on_land_duty_id"
-    t.index ["user_id"], name: "index_user_land_duties_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -93,8 +94,8 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "completed_duties", "land_duties"
+  add_foreign_key "completed_duties", "users"
   add_foreign_key "land_duties", "duties"
   add_foreign_key "land_duties", "lands"
-  add_foreign_key "user_land_duties", "land_duties"
-  add_foreign_key "user_land_duties", "users"
 end
