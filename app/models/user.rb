@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  audited
+
   validates :email, presence: true, uniqueness: true
   validates :password, length: {minimum: 8}, allow_nil: true
 

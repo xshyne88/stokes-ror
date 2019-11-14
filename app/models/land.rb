@@ -1,4 +1,7 @@
 class Land < ApplicationRecord
+  audited
+  has_associated_audits
+
   validates :name, presence: true, uniqueness: true
 
   has_many :land_duties

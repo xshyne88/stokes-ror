@@ -1,4 +1,7 @@
 class LandDuty < ApplicationRecord
+  audited associated_with: :land
+  has_associated_audits
+
   has_many :user_land_duties
 
   belongs_to :land
