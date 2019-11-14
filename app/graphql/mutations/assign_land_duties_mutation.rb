@@ -2,7 +2,7 @@ module Mutations
   class AssignLandDutiesMutation < Types::BaseMutation
     description "bulk edits land duties on  a land"
 
-    argument :duty_ids, [ID], required: true
+    argument :duty_ids, [ID], required: true, loads: Outputs::DutyType
     argument :land_id, ID, required: true, loads: Outputs::LandType
 
     field :land, Outputs::LandType, null: true
@@ -11,12 +11,9 @@ module Mutations
     policy ApplicationPolicy, :logged_in?
 
     def authorized_resolve
-      result = input.land.assign_land_duties(decode_duty_ids(input.duty_ids))
-      if result
-        {land: input.land.reload, errors: []}
-      else
-        {user: nil, errors: ["Land failed to update"]}
-      end
+      input.land.duties = input.dutys
+
+      {land: input.land.reload, errors: []}
     end
 
     private
