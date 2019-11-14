@@ -4,7 +4,8 @@ class CreateLandDuties < ActiveRecord::Migration[6.0]
       t.references :land, foreign_key: true
       t.references :duty, foreign_key: true
 
-      t.integer :estimated_days
+      t.integer :estimated_days, default: 14
+      t.datetime :expires_at
 
       t.timestamps
     end

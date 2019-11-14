@@ -3,6 +3,7 @@ git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 
 ruby '2.6.5'
 
+gem 'audited'
 gem 'bcrypt'
 gem 'dotenv-rails'
 gem 'bootsnap', '>= 1.4.2', require: false

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_233150) do
   create_table "duties", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "estimated_time"
+    t.integer "estimated_days", default: 14
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -26,7 +26,8 @@ ActiveRecord::Schema.define(version: 2019_11_11_233150) do
   create_table "land_duties", force: :cascade do |t|
     t.bigint "land_id"
     t.bigint "duty_id"
-    t.integer "estimated_days"
+    t.integer "estimated_days", default: 14
+    t.datetime "expires_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["duty_id"], name: "index_land_duties_on_duty_id"
