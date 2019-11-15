@@ -7,6 +7,9 @@ describe "Delete CompletedDuty Mutation", :graphql do
         mutation($input: DeleteCompletedDutyInput!) {
           deleteCompletedDuty(input: $input) {
               success
+              land {
+                id
+              }
             }
           }
       GRAPHQL
@@ -19,6 +22,7 @@ describe "Delete CompletedDuty Mutation", :graphql do
       }
 
      result = execute query, as: build(:user), variables: {input: input}
+     pp result
 
      success = result[:data][:deleteCompletedDuty][:success]
      expect(CompletedDuty.count).to eq(0)
