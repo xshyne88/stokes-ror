@@ -7,6 +7,7 @@ module Outputs
     field :land, Outputs::LandType, null: true
     field :duty, Outputs::DutyType, null: true
     field :estimated_days, Integer, null: true
+    field :status, String, null: true
     field :completed_at, GraphQL::Types::ISO8601DateTime, null: true
     field :completed_duties, Outputs::CompletedDutyType.connection_type, null: true
 

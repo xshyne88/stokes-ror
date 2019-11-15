@@ -1,6 +1,6 @@
 class LandDuty < ApplicationRecord
   after_commit :update_land_last_completed, on: :update
-  enum status: {incomplete: 0, complete: 1}
+  enum status: {incomplete: 0, completed: 1}
 
   audited associated_with: :land
   has_associated_audits

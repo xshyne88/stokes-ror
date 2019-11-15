@@ -21,7 +21,7 @@ class CompletedDuty < ApplicationRecord
 
   # TODO: where expired at has not occured
   def update_land_duty_c
-    land_duty.update(status: :complete)
+    land_duty.update(status: :completed)
   end 
 
   # TODO: where expired at has not occured
