@@ -81,7 +81,6 @@ describe "Land Query", :graphql do
         create(:completed_duty, land_duty: land_duty)
   
         result = execute query, as: build(:user, admin: true), variables: { landId: global_id(land, Outputs::LandType) }
-        pp result
   
         land_duties = result[:data][:land][:landDuties][:edges]
         expect(land_duties.count).to eq(1)
