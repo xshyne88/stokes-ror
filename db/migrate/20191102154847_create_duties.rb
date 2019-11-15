@@ -3,7 +3,9 @@ class CreateDuties < ActiveRecord::Migration[6.0]
     create_table :duties do |t|
       t.string :name
       t.string :description
+      
       t.string :icon, default: "tasks"
+
       t.integer :estimated_days, default: 14
 
       t.timestamps

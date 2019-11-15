@@ -7,6 +7,8 @@ class CreateLandDuties < ActiveRecord::Migration[6.0]
       t.integer :estimated_days, default: 14
       t.datetime :expires_at
 
+      t.integer :status, default: 0
+
       t.timestamps
     end
   end

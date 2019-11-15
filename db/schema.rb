@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.bigint "duty_id"
     t.integer "estimated_days", default: 14
     t.datetime "expires_at"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["duty_id"], name: "index_land_duties_on_duty_id"
@@ -71,6 +72,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.string "name"
     t.string "longitude"
     t.string "latitude"
+    t.string "last_completed_duty"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -5,6 +5,8 @@ class CreateLands < ActiveRecord::Migration[6.0]
       t.string :longitude
       t.string :latitude
 
+      t.string :last_completed_duty, null: true
+
       t.timestamps
     end
   end
