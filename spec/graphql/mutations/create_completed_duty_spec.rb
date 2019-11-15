@@ -21,7 +21,6 @@ describe "Create CompletedDuty Mutation", :graphql do
       }
 
       result = execute query, as: build(:user), variables: {input: input}
-      pp result
 
       create_completed_duty = result[:data][:createCompletedDuty]
       expect(CompletedDuty.count).to eq(1)
