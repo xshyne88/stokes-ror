@@ -15,6 +15,10 @@ module Outputs
       @object.estimated_days
     end
 
+    def duty
+      Loaders::AssociationLoader.for(LandDuty, :duty).load(@object)
+    end 
+
     def user
       Loaders::AssociationLoader.for(LandDuty, :user).load(@object)
     end

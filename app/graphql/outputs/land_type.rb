@@ -13,6 +13,10 @@ module Outputs
       Loaders::AssociationLoader.for(Land, :land_duties).load(@object)
     end
 
+    def duties
+      Loaders::AssociationLoader.for(Land, :land_duties).load(@object)
+    end
+
     def self.loads(id)
       Land.find(id)
     end
