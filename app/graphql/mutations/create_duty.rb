@@ -4,6 +4,7 @@ module Mutations
 
     argument :name, String, required: true
     argument :description, String, required: true
+    argument :estimated_days, Integer, required: false
 
     field :duty, Outputs::DutyType, null: true
     field :errors, function: Resolvers::Error.new
