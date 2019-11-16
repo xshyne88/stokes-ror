@@ -11,9 +11,8 @@ module Mutations
     policy ApplicationPolicy, :logged_in?
 
     def authorized_resolve
-      pp land = input.land_duty.land
+      land = input.land_duty.land
       if input.land_duty.destroy
-        pp land.land_duties
         {success: true, errors: [], land: land.reload}
       else
         {success: false, errors: input.land_duty.errors, land: nil}
