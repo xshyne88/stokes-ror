@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :duty do
-    name { Faker::FunnyName.name }
-    description { "My Description" }
+    name { Faker::Company.unique.bs }
+    description { Faker::Quote.famous_last_words }
   end
 end
