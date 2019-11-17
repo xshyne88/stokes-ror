@@ -5,7 +5,8 @@ module Outputs
     global_id_field :id
     field :user, Outputs::UserType, null: true
     field :land_duty, Outputs::LandDutyType, null: true
-    field :completed_at, GraphQL::Types::ISO8601DateTime, null: true
+    field :expires_at, GraphQL::Types::ISO8601DateTime, null: true
+    field :expired, Boolean, null: true
 
     def land_duty
       Loaders::AssociationLoader.for(CompletedDuty, :land_duty).load(@object)
