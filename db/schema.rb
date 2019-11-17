@@ -40,7 +40,8 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
   create_table "completed_duties", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "land_duty_id"
-    t.datetime "completed_at"
+    t.boolean "expired", default: false, null: false
+    t.datetime "expires_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["land_duty_id"], name: "index_completed_duties_on_land_duty_id"
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.bigint "duty_id"
     t.integer "estimated_days", default: 14
     t.datetime "expires_at"
+    t.string "last_completed_by"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
+    t.string "name", null: false
     t.string "password_digest", null: false
     t.boolean "active", default: true, null: false
     t.boolean "admin", default: false, null: false
