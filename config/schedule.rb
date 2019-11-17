@@ -23,7 +23,7 @@ set :environment, "development"
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 set :PATH, ENV['PATH']
 
-# every 1.minutes do
-#   rake "land:update"
-# end
+every 6.hours do
+  rake "completed_duties:mark_expired"
+end
 

@@ -6,13 +6,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(
+User.create!(
   email: 'chase@chase.com',
   name: "Chase Philips",
   password: 'abc12345'
 )
 
-User.create(
+User.create!(
   email: 'zhenson1989@gmail.com',
   name: "Zach Henson",
   password: 'abc12345',
@@ -46,7 +46,11 @@ s = Land.create!(name: 'S', latitude: Faker::Address.latitude, longitude: Faker:
 
 Land.all.each { |land|
   [trash, mowed, weeds].each { |duty|
-    LandDuty.create(land: land, duty: duty)
+    LandDuty.create!(land: land, duty: duty)
   }
 }
+
+CompletedDuty.create!(land_duty: LandDuty.first, user: User.first)
+CompletedDuty.create!(land_duty: LandDuty.second, user: User.first, expires_at: DateTime.now)
+CompletedDuty.create!(land_duty: LandDuty.third, user: User.first, expires_at: DateTime.now)
 
