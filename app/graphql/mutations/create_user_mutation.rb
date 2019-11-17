@@ -3,6 +3,7 @@ module Mutations
     description "Create a user"
 
     argument :email, String, required: true
+    argument :name, String, required: true
     argument :password, String, required: true
 
     field :user, Outputs::UserType, null: true
