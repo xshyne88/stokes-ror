@@ -6,7 +6,7 @@ namespace :completed_duties do
 
     if completed_duties.count
       completed_duties.update(expired: true)
-      pp "Marked #{completed_duties.count} as expired. Current Time is: #{DateTime.now}"
+      return pp "Marked #{completed_duties.count} as expired. Current Time is: #{DateTime.now}"
     end
 
     pp "#{DateTime.now} - No expirations"
