@@ -12,7 +12,7 @@ describe "Delete LandDuty Mutation", :graphql do
       GRAPHQL
     end
 
-    it "deletes a new land_duty" do
+    it "deletes a land_duty" do
       land_duty = create(:land_duty)
       input = {
         landDutyId: global_id(land_duty, Outputs::LandDutyType)

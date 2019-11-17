@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :note do
-    body { "MyText" }
+    body { Faker::Quote.yoda }
     noteable { nil }
   end
 end

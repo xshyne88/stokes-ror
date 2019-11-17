@@ -1,21 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe CompletedDuty, type: :model do
-  describe ".complete?" do
-    it "queries the completedAt field via complete" do
+  describe ".mark_expired" do
+    it "marks itself expired" do
       completed_duty = create(:completed_duty)
 
-      expect(completed_duty.completed?).to be(false)
-    end
-  end
+      completed_duty.mark_expired
 
-  describe ".mark_complete" do
-    it "marks itself complete" do
-      completed_duty = create(:completed_duty)
-
-      completed_duty.mark_complete
-
-      expect(completed_duty.reload.completed?).to be(true)
+      expect(completed_duty.reload.expired?).to be(true)
     end
   end
 end

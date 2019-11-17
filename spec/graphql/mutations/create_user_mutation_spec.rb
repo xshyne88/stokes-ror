@@ -22,6 +22,7 @@ describe "Create User Mutation", :graphql do
       result = execute query, as: current_user, variables: {
         input: {
           email: user_email,
+          name: "Chase",
           password: user_password
         },
       }
