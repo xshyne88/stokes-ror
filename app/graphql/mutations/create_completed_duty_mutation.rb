@@ -4,7 +4,7 @@ module Mutations
 
     argument :land_duty_id, ID, required: true, loads: Outputs::LandDutyType
     argument :user_id, ID, required: true, loads: Outputs::UserType
-    argument :completed_at, GraphQL::Types::ISO8601DateTime, required: false
+    argument :expires_at, GraphQL::Types::ISO8601DateTime, required: false
 
     field :completed_duty, Outputs::CompletedDutyType, null: true
     field :errors, function: Resolvers::Error.new
@@ -16,7 +16,7 @@ module Mutations
       completed_duty = CompletedDuty.new(input.to_h)
 
       if completed_duty.save
-        {completed_duty: completed_duty, errors: [], land: completed_duty.reload.land_duty.reload.land.reload}
+        {completed_duty: completed_duty, errors: [], land: completed_duty.reload.land_duty.land}
       else
         {completed_duty: nil, errors: completed_duty.errors, land: nil}
       end

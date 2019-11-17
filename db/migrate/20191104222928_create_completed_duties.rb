@@ -4,9 +4,10 @@ class CreateCompletedDuties < ActiveRecord::Migration[6.0]
       t.references :user, foreign_key: true
       t.references :land_duty, foreign_key: true
 
-      t.boolean :expired, default: false, null: false
       t.datetime :expires_at
 
+      t.boolean :expired, default: false, null: false
+      
       t.timestamps
     end
   end

@@ -5,7 +5,7 @@ module Mutations
     argument :land_id, ID, required: true, loads: Outputs::LandType
     argument :duty_id, ID, required: true, loads: Outputs::DutyType
     argument :estimated_days, Integer, required: false
-    argument :completed_at, GraphQL::Types::ISO8601DateTime, required: false
+    argument :expires_at, GraphQL::Types::ISO8601DateTime, required: false
 
     field :land_duty, Outputs::LandDutyType, null: true
     field :land, Outputs::LandType, null: true
