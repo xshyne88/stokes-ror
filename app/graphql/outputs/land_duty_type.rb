@@ -10,10 +10,26 @@ module Outputs
     field :status, String, null: true
     field :expires_at, GraphQL::Types::ISO8601DateTime, null: true
     field :completed_duties, Outputs::CompletedDutyType.connection_type, null: true
+    field :completed_by, String, null: true
 
     def estimated_days
       @object.estimated_days
     end
+
+    def completed_by
+      Loaders::AssociationLoader.for(LandDuty, :completed_duties).load(@object) do |cd|
+        maybe_record = 
+        cd.sort_by { |created_duty| created_duty.created_at }
+        .detect { |completed_duty| !completed_duty.expired? }
+
+        if maybe_record
+          pp maybe record
+         return maybe_record.lastCompletedBy
+        else
+          return nil
+        end
+      end
+    end 
 
     def duty
       Loaders::AssociationLoader.for(LandDuty, :duty).load(@object)

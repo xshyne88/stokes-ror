@@ -10,6 +10,12 @@ class LandDuty < ApplicationRecord
   belongs_to :land
   belongs_to :duty
 
+  scope :active, -> { where(expired: false) }
+
+  def has_any_completions?
+    completed_duties.count > 0
+  end
+
   private
 
   def update_land_last_completed

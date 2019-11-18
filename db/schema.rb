@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_11_14_204314) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,8 +39,8 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
   create_table "completed_duties", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "land_duty_id"
-    t.boolean "expired", default: false, null: false
     t.datetime "expires_at"
+    t.boolean "expired", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["land_duty_id"], name: "index_completed_duties_on_land_duty_id"

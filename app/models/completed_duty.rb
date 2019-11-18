@@ -17,6 +17,19 @@ class CompletedDuty < ApplicationRecord
     update(expired: true)
   end
 
+  def last_completed_by
+    return unless land_duty.has_any_completions?
+    user =  most_recent_user_to_complete
+
+    return nil unless user
+
+    user.name
+  end
+
+  def most_recent_user_to_complete
+    audits.first.user
+  end
+
   private 
 
   def set_expires_at
@@ -33,8 +46,4 @@ class CompletedDuty < ApplicationRecord
     return if self.expired?
     land_duty.update(status: :incomplete, last_completed_by: last_completed_by)
   end 
-
-  def last_completed_by
-    land_duty.completed_duties.most_recent.first&.audits&.first&.user
-  end
 end
