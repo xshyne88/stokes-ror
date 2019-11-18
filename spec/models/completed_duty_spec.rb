@@ -28,28 +28,31 @@ describe CompletedDuty, type: :model do
 
   describe "most_recent scope" do
     it "gets the 5 most recent completed duties in order by latest -> oldest" do
-      completed_duties =
-        [1, 2, 3, 4, 5].reverse.map { |x| create(:completed_duty, created_at: DateTime.now + x) }
+      middle = create(:completed_duty, created_at: 3.days.ago)
+      oldest = create(:completed_duty, created_at: 5.days.ago)
+      recent = create(:completed_duty, created_at: 1.days.ago)
 
       result = CompletedDuty.most_recent
 
-      expect(result.count).to eq(5)
-      expect(result.first).to eq(completed_duties.first)
-      expect(result.last).to eq(completed_duties.last)
+      expect(result).to eq([recent, middle, oldest])
     end
   end
-  describe "most recent user to complete" do
-    it "retrieves the usre who most recentl ocmpleted this duty" do
-      user = create(:user)
-      user2 = create(:user)
-      Audited.audit_class.as_user(user) { create(:completed_duty) }
-      Audited.audit_class.as_user(user2) {
-        completed_duty = create(:completed_duty)
 
-        result = completed_duty.most_recent_user_to_complete
+  describe "active scope" do
+    it "describes only the most active completed_duty" do
+      create(:completed_duty, expired: true)
+      target = create(:completed_duty, expired: false)
+      create(:completed_duty, expired: true)
 
-        expect(result.name).to eq(user2.name)
-      }
+      result = CompletedDuty.active
+
+      expect(result.first).to eq(target)
+      expect(result.count).to eq(1)
     end
+  end
+
+
+  def now
+    DateTime.now
   end
 end

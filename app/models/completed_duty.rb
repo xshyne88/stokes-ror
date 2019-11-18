@@ -9,6 +9,7 @@ class CompletedDuty < ApplicationRecord
 
   before_create :set_expires_at
 
+  scope :active, -> { where(expired: false) }
   scope :most_recent, -> {order('created_at DESC').limit(5)}
 
   has_many :notes, as: :noteable
@@ -19,7 +20,7 @@ class CompletedDuty < ApplicationRecord
 
   def last_completed_by
     return unless land_duty.has_any_completions?
-    user =  most_recent_user_to_complete
+    user = most_recent_user_to_complete
 
     return nil unless user
 
@@ -27,7 +28,7 @@ class CompletedDuty < ApplicationRecord
   end
 
   def most_recent_user_to_complete
-    audits.first.user
+    land_duty.completed_duties.most_recent.first.user
   end
 
   private 
