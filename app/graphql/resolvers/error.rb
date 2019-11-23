@@ -11,8 +11,8 @@ module Resolvers
 
     def map_errors(errors)
       case errors
-      when ActiveModel::Errors
-        errors.map { |field, message| {field: field, message: message} }
+      when ActiveModel::Errors, Hash
+        errors.map { |field, message| {field: field.to_s.camelize(:lower), message: message} }
       else
         errors.map { |error| {field: :base, message: error} }
       end
