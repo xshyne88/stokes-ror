@@ -53,7 +53,7 @@ describe "CompletedDuties Query", :graphql do
 
       execute query, as: build(:user)
 
-      # TODO: be less lazy
+      # TODO: be less lazy - reset
       nodes = result[:data][:completedDuties][:edges].pluck(:node)
       expect(nodes.first[:expiresAt]).to be_truthy
       expect(nodes.second[:expiresAt]).to be_truthy
