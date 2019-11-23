@@ -41,9 +41,11 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.bigint "user_id"
     t.bigint "land_duty_id"
     t.datetime "expires_at"
+    t.datetime "deleted_at"
     t.boolean "expired", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_completed_duties_on_deleted_at"
     t.index ["land_duty_id"], name: "index_completed_duties_on_land_duty_id"
     t.index ["user_id"], name: "index_completed_duties_on_user_id"
   end
@@ -53,8 +55,10 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.string "description"
     t.string "icon", default: "tasks"
     t.integer "estimated_days", default: 14
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_duties_on_deleted_at"
   end
 
   create_table "land_duties", force: :cascade do |t|
@@ -64,8 +68,10 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.datetime "expires_at"
     t.string "last_completed_by"
     t.integer "status", default: 0
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_land_duties_on_deleted_at"
     t.index ["duty_id"], name: "index_land_duties_on_duty_id"
     t.index ["land_id"], name: "index_land_duties_on_land_id"
   end
@@ -75,16 +81,20 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.string "longitude"
     t.string "latitude"
     t.string "last_completed_duty"
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_lands_on_deleted_at"
   end
 
   create_table "notes", force: :cascade do |t|
     t.text "body"
     t.string "noteable_type", null: false
     t.bigint "noteable_id", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_notes_on_deleted_at"
     t.index ["noteable_type", "noteable_id"], name: "index_notes_on_noteable_type_and_noteable_id"
   end
 
@@ -95,8 +105,10 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.boolean "active", default: true, null: false
     t.boolean "admin", default: false, null: false
     t.integer "token_version", default: 1, null: false
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
   end
 
   add_foreign_key "completed_duties", "land_duties"

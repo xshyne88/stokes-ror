@@ -9,8 +9,11 @@ class CreateLandDuties < ActiveRecord::Migration[6.0]
       t.string :last_completed_by
 
       t.integer :status, default: 0
+      t.datetime :deleted_at
 
       t.timestamps
+
+      t.index :deleted_at
     end
   end
 end

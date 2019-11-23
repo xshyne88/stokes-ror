@@ -1,6 +1,7 @@
 class Land < ApplicationRecord
   audited
   has_associated_audits
+  acts_as_paranoid
 
   validates :name, presence: true, uniqueness: true
 

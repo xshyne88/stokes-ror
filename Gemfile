@@ -10,6 +10,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'graphql-batch'
 gem 'jbuilder', '~> 2.7'
 gem 'jwt'
+gem 'paranoia', '~> 2.2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rack-cors'

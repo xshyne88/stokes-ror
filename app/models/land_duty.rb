@@ -4,6 +4,7 @@ class LandDuty < ApplicationRecord
 
   audited associated_with: :land
   has_associated_audits
+  acts_as_paranoid
 
   has_many :completed_duties, -> { order(created_at: :desc) }
 

@@ -1,8 +1,11 @@
 class CompletedDuty < ApplicationRecord
+  include Orderable
+
   after_commit :denormalize_land_duty_complete, on: :create
   after_commit :denormalize_land_duty_incomplete, on: :destroy
 
   audited associated_with: :land_duty
+  acts_as_paranoid
 
   belongs_to :user
   belongs_to :land_duty
@@ -31,7 +34,7 @@ class CompletedDuty < ApplicationRecord
     land_duty.completed_duties.most_recent.first.user
   end
 
-  private 
+  private
 
   def set_expires_at
     return if !expires_at.nil?
@@ -46,5 +49,5 @@ class CompletedDuty < ApplicationRecord
   def denormalize_land_duty_incomplete
     return if self.expired?
     land_duty.update(status: :incomplete, last_completed_by: last_completed_by)
-  end 
+  end
 end
