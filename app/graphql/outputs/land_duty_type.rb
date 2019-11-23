@@ -24,17 +24,8 @@ module Outputs
       end
     end
 
-    def completed_by
-      Loaders::AssociationLoader.for(LandDuty, :completed_duties).load(@object).then do |cd|
-      end
-    end 
-
     def duty
       Loaders::AssociationLoader.for(LandDuty, :duty).load(@object)
-    end 
-
-    def user
-      Loaders::AssociationLoader.for(LandDuty, :user).load(@object)
     end
 
     def land

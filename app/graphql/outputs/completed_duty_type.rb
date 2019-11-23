@@ -10,8 +10,8 @@ module Outputs
     field :last_completed_by, String, null: true
 
     def last_completed_by
-      @object.last_completed_by 
-    end 
+      @object.last_completed_by
+    end
 
     def land_duty
       Loaders::AssociationLoader.for(CompletedDuty, :land_duty).load(@object)
