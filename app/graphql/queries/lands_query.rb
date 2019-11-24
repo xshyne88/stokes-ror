@@ -6,7 +6,7 @@ module Queries
     policy ApplicationPolicy, :logged_in?
 
     def authorized_resolve
-      Land.all
+      Land.order(name: :asc).all
     end
   end
 end

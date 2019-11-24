@@ -46,18 +46,18 @@ describe "CompletedDuties Query", :graphql do
       create(:completed_duty, expires_at: DateTime.now + 3)
       create(:completed_duty, expires_at: DateTime.now + 1)
 
-      result = execute query, as: build(:user), variables: {
-        sortBy: "EXPIRES_AT",
-        sortDirection: "DESC",
-      }
+        result = execute query, as: build(:user), variables: {
+          sortBy: "EXPIRES_AT",
+          sortDirection: "DESC",
+        }
 
-      execute query, as: build(:user)
+        execute query, as: build(:user)
 
-      # TODO: be less lazy - reset
-      nodes = result[:data][:completedDuties][:edges].pluck(:node)
-      expect(nodes.first[:expiresAt]).to be_truthy
-      expect(nodes.second[:expiresAt]).to be_truthy
-      expect(nodes.third[:expiresAt]).to be_truthy
-    end
+        # TODO: be less lazy
+        nodes = result[:data][:completedDuties][:edges].pluck(:node)
+        expect(nodes.first[:expiresAt]).to be_truthy
+        expect(nodes.second[:expiresAt]).to be_truthy
+        expect(nodes.third[:expiresAt]).to be_truthy
+      end
   end
 end
