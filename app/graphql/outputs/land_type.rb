@@ -6,7 +6,6 @@ module Outputs
     field :name, String, null: false
     field :longitude, String, null: true
     field :latitude, String, null: true
-    field :last_completed_duty, String, null: true
     field :land_duties, Outputs::LandDutyType.connection_type, null: true
 
     def land_duties

@@ -22,7 +22,6 @@ describe "CompletedDuties Query", :graphql do
       completed_duty = create(:completed_duty)
 
       result = execute query, as: build(:user)
-      pp result
 
       nodes = result[:data][:completedDuties][:edges].pluck(:node)
       expect(nodes.first[:landDuty][:duty]).to include(name: completed_duty.land_duty.duty.name)

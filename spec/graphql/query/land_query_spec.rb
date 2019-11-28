@@ -87,28 +87,4 @@ describe "Land Query", :graphql do
         expect(land_duties.first[:node][:status]).to eq("completed")
       end
   end
-
-  describe "last completed query" do
-    query = 
-      <<-'GRAPHQL'
-      query($landId: ID!) {
-        land(landId: $landId) {
-          id
-          lastCompletedDuty
-        }
-      }
-    GRAPHQL
-    it "updates lastCompletedDuty when a duty is completed" do
-      name = "pick up trash"
-      land = create(:land)
-      duty = create(:duty, name: name)
-      land_duty = create(:land_duty, land: land, duty: duty)
-      create(:completed_duty, land_duty: land_duty)
-
-      result = execute query, as: build(:user, admin: true), variables: { landId: global_id(land, Outputs::LandType) }
-    
-      last_duty_name = result[:data][:land][:lastCompletedDuty]
-      expect(last_duty_name).to eq(name)
-    end 
-  end
 end

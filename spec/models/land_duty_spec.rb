@@ -21,14 +21,4 @@ describe LandDuty, type: :model do
       expect(ld.has_any_completions?).to be(false)
     end
   end
-  context "denormalizing last completed onto land" do
-    it "puts last compelted duty onto land" do
-      land = create(:land)
-      duty = create(:duty, name: "whatever")
-      ld = create(:land_duty, land: land, duty: duty)
-      create(:completed_duty, land_duty: ld)
-
-      expect(land.last_completed_duty).to eq(duty.name)
-    end
-  end
 end

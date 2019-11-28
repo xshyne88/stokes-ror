@@ -21,15 +21,6 @@ class CompletedDuty < ApplicationRecord
     update(expired: true)
   end
 
-  def last_completed_by
-    return unless land_duty.has_any_completions?
-    user = most_recent_user_to_complete
-
-    return nil unless user
-
-    user.name
-  end
-
   def most_recent_user_to_complete
     land_duty.completed_duties.most_recent.first.user
   end

@@ -1,5 +1,4 @@
 class LandDuty < ApplicationRecord
-  after_commit :update_land_last_completed, on: :update
   enum status: {incomplete: 0, completed: 1}
 
   audited associated_with: :land
@@ -14,12 +13,12 @@ class LandDuty < ApplicationRecord
   scope :active, -> { where(expired: false) }
 
   def has_any_completions?
-    completed_duties.count > 0
+   completed_duties.count > 0
   end
 
   private
 
   def update_land_last_completed
-    land.update(last_completed_duty: duty.name)
+    land.update(last_completed_duty: completed_duties.first)
   end
 end
