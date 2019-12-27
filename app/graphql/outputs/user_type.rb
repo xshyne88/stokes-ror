@@ -4,6 +4,7 @@ module Outputs
 
     global_id_field :id
     field :email, String, null: false
+    field :name, String, null: true
     field :is_active, Boolean, null: false
     field :is_admin, Boolean, null: false
 

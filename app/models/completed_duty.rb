@@ -13,7 +13,7 @@ class CompletedDuty < ApplicationRecord
   before_create :set_expires_at
 
   scope :active, -> { where(expired: false) }
-  scope :most_recent, -> {order('created_at DESC').limit(5)}
+  scope :most_recent, -> {order('created_at DESC').limit(5) }
 
   has_many :notes, as: :noteable
 

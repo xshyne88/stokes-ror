@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.string "name"
     t.string "longitude"
     t.string "latitude"
-    t.string "last_completed_duty"
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
