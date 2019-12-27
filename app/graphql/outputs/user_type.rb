@@ -7,6 +7,7 @@ module Outputs
     field :name, String, null: true
     field :is_active, Boolean, null: false
     field :is_admin, Boolean, null: false
+    field :password_digest, String, null: true
 
     def is_active
       @object.active?

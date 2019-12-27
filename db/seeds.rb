@@ -13,6 +13,7 @@ chase = User.create!(
 )
 
 Audited.audit_class.as_user(chase) do
+
 User.create!(
   email: 'zhenson1989@gmail.com',
   name: "Zach Henson",
@@ -20,20 +21,50 @@ User.create!(
   admin: true
 )
 
+User.create!(
+  email: 'jay@gmail.com',
+  name: "Jay",
+  password: 'abc12345',
+  admin: false
+)
+
+User.create!(
+  email: 'shay@gmail.com',
+  name: "shay",
+  password: 'abc12345',
+  admin: false
+)
+
+User.create!(
+  email: 'amp@gmail.com',
+  name: "amp",
+  password: 'abc12345',
+  admin: false
+)
+
+User.create!(
+  email: 'cliff@gmail.com',
+  name: "cliff",
+  password: 'abc12345',
+  admin: false
+)
 
 trash = Duty.create!(name: 'Trash Removed', description: 'Remove all trash and debris')
 mowed = Duty.create!(name: 'Mowed', description: 'Entire grass area mown correctly')
-weeds = Duty.create!(name: 'Weed Eaten', description: 'Remove all weeds')
+weeds = Duty.create!(name: 'Weed-Eaten', description: 'Remove all weeds')
 trees = Duty.create!(name: 'Trees Kempt', description: 'Use best judgement and water prune and cut foliage')
 roads = Duty.create!(name: 'Roads Cleared', description: 'Clean the roads surrounding or touching the area')
 posts = Duty.create!(name: 'Posts Maintained', description: 'Take care of the green posts')
-signs = Duty.create!(name: 'Signs made Visible', description: 'Maintain cleanliness of signs')
+signs = Duty.create!(name: 'Signs made Visible', description: 'All signs are in place, upright and visible')
 
 cdi = Land.create!(name: 'CD Outer', latitude: '28.51356', longitude: '-81.42964874797077')
 cdo = Land.create!(name: 'CD Inner', latitude: '28.5136', longitude: '-81.4288')
 ef = Land.create!(name: 'EF', latitude: '28.5138', longitude: '-81.4284')
+vl = Land.create!(name: 'Vacant Land', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
+off = Land.create!(name: 'Office', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
 
 a = Land.create!(name: 'A', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
+b = Land.create!(name: 'B', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
 g = Land.create!(name: 'G', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
 h = Land.create!(name: 'H', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
 j = Land.create!(name: 'J', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
@@ -44,6 +75,24 @@ n = Land.create!(name: 'N', latitude: Faker::Address.latitude, longitude: Faker:
 p = Land.create!(name: 'P', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
 r = Land.create!(name: 'R', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
 s = Land.create!(name: 'S', latitude: Faker::Address.latitude, longitude: Faker::Address.longitude)
+
+LandDuty.create!(land: cdo, duty: posts)
+LandDuty.create!(land: cdi, duty: posts)
+LandDuty.create!(land: ef, duty: posts)
+LandDuty.create!(land: g, duty: posts)
+
+LandDuty.create!(land: cdo, duty: signs)
+LandDuty.create!(land: cdi, duty: signs)
+LandDuty.create!(land: ef, duty: signs)
+LandDuty.create!(land: n, duty: signs)
+LandDuty.create!(land: p, duty: signs)
+LandDuty.create!(land: r, duty: signs)
+LandDuty.create!(land: s, duty: signs)
+
+
+LandDuty.create!(land: b, duty: trash)
+LandDuty.create!(land: b, duty: mowed)
+LandDuty.create!(land: b, duty: weeds)
 
 Land.all.each { |land|
   [trash, mowed, weeds].each { |duty|
