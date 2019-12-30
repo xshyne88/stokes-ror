@@ -27,7 +27,6 @@ errors { message }
       result = execute query, as: build(:user), variables: {input: {
         completedDutyId: cd_id, completedDutyInput: completed_duty_input,
       }}
-      pp result
 
       expired_time = result[:data][:updateCompletedDuty][:completedDuty][:expiresAt]
       expect(expired_time).to eq(new_time)
