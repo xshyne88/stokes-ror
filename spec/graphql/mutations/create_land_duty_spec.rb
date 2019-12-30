@@ -18,7 +18,7 @@ describe "Create LandDuty Mutation", :graphql do
       input = {
         landId: global_id(create(:land), Outputs::LandType),
         dutyId: global_id(create(:duty), Outputs::DutyType),
-        estimatedDays: 5
+        estimatedDays: 5,
       }
 
       result = execute query, as: build(:user), variables: {input: input}

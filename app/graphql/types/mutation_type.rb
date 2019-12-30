@@ -10,6 +10,7 @@ module Types
     field :update_password, resolver: Mutations::UpdatePasswordMutation
     field :set_password, resolver: Mutations::SetPasswordMutation
     field :update_land_duty, resolver: Mutations::UpdateLandDutyMutation
+    field :update_completed_duty, resolver: Mutations::UpdateCompletedDutyMutation
 
     # DELETE
 

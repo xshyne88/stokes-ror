@@ -23,7 +23,7 @@ describe "Create User Mutation", :graphql do
         input: {
           email: user_email,
           name: "Chase",
-          password: user_password
+          password: user_password,
         },
       }
 

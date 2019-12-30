@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe "Create Duty Mutation", :graphql do
   describe "createDuty" do
@@ -22,7 +22,7 @@ describe "Create Duty Mutation", :graphql do
       result = execute query, as: build(:user), variables: {
         input: {
           name: name,
-          description: description
+          description: description,
         },
       }
 

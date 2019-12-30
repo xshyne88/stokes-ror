@@ -17,7 +17,7 @@ describe "Create CompletedDuty Mutation", :graphql do
     it "creates a new completed_duty" do
       input = {
         userId: global_id(create(:user), Outputs::UserType),
-        landDutyId: global_id(create(:land_duty), Outputs::LandDutyType)
+        landDutyId: global_id(create(:land_duty), Outputs::LandDutyType),
       }
 
       result = execute query, as: build(:user), variables: {input: input}
@@ -32,7 +32,7 @@ describe "Create CompletedDuty Mutation", :graphql do
       land_duty = create(:land_duty, land: land)
       input = {
         userId: global_id(user, Outputs::UserType),
-        landDutyId: global_id(land_duty, Outputs::LandDutyType)
+        landDutyId: global_id(land_duty, Outputs::LandDutyType),
       }
 
       result = execute query, as: user, variables: {input: input}
@@ -46,7 +46,7 @@ describe "Create CompletedDuty Mutation", :graphql do
       land_duty = create(:land_duty, land: land)
       input = {
         userId: global_id(user, Outputs::UserType),
-        landDutyId: global_id(land_duty, Outputs::LandDutyType)
+        landDutyId: global_id(land_duty, Outputs::LandDutyType),
       }
 
       result = execute query, as: user, variables: {input: input}

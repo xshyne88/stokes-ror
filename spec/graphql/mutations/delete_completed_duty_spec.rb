@@ -18,14 +18,14 @@ describe "Delete CompletedDuty Mutation", :graphql do
     it "deletes a new completed_duty" do
       completed_duty = create(:completed_duty)
       input = {
-        completedDutyId: global_id(completed_duty, Outputs::CompletedDutyType)
+        completedDutyId: global_id(completed_duty, Outputs::CompletedDutyType),
       }
 
-     result = execute query, as: build(:user), variables: {input: input}
+      result = execute query, as: build(:user), variables: {input: input}
 
-     success = result[:data][:deleteCompletedDuty][:success]
-     expect(CompletedDuty.count).to eq(0)
-     expect(success).to be(true)
+      success = result[:data][:deleteCompletedDuty][:success]
+      expect(CompletedDuty.count).to eq(0)
+      expect(success).to be(true)
     end
   end
 end
