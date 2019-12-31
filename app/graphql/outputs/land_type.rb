@@ -7,6 +7,7 @@ module Outputs
     field :longitude, String, null: true
     field :latitude, String, null: true
     field :land_duties, Outputs::LandDutyType.connection_type, null: true
+    field :notes, Outputs::NoteType.connection_type, null: true
 
     def land_duties
       Loaders::AssociationLoader.for(Land, :land_duties).load(@object)
@@ -14,6 +15,10 @@ module Outputs
 
     def duties
       Loaders::AssociationLoader.for(Land, :land_duties).load(@object)
+    end
+
+    def notes
+      Loaders::AssociationLoader.for(Land, :notes).load(@object)
     end
 
     def self.loads(id)

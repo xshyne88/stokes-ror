@@ -5,6 +5,7 @@ module Types
     field :create_user, resolver: Mutations::CreateUserMutation
     field :create_land_duty, resolver: Mutations::CreateLandDutyMutation
     field :create_completed_duty, resolver: Mutations::CreateCompletedDutyMutation
+    field :create_land_note, resolver: Mutations::CreateLandNoteMutation
 
     # UPDATE
     field :update_password, resolver: Mutations::UpdatePasswordMutation
