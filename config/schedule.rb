@@ -20,10 +20,9 @@
 # Learn more: http://github.com/javan/whenever
 
 set :environment, "development"
-set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
-set :PATH, ENV['PATH']
+set :output, {error: "log/cron_error_log.log", standard: "log/cron_log.log"}
+set :PATH, ENV["PATH"]
 
 every 6.hours do
   rake "completed_duties:mark_expired"
 end
-

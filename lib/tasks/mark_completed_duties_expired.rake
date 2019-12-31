@@ -1,8 +1,7 @@
-desc 'checks expired at for all fields and updates the expired fields accordingly'
+desc "checks expired at for all fields and updates the expired fields accordingly"
 namespace :completed_duties do
-  task :mark_expired => :environment do
-
-    completed_duties = CompletedDuty.where('expires_at < now()')
+  task mark_expired: :environment do
+    completed_duties = CompletedDuty.where("expires_at < now()")
 
     if completed_duties.count > 0
       completed_duties.update(expired: true)

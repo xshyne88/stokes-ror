@@ -4,8 +4,6 @@ class ExpireCompletedDuties < ApplicationRecord
   end
 
   def call
-    CompletedDuty.where()
-
+    CompletedDuty.where
   end
-
 end

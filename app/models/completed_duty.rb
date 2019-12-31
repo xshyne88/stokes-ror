@@ -13,7 +13,7 @@ class CompletedDuty < ApplicationRecord
   before_create :set_expires_at
 
   scope :active, -> { where(expired: false) }
-  scope :most_recent, -> {order('created_at DESC').limit(5) }
+  scope :most_recent, -> { order("created_at DESC").limit(5) }
 
   has_many :notes, as: :noteable
 
@@ -28,7 +28,7 @@ class CompletedDuty < ApplicationRecord
   private
 
   def set_expires_at
-    return if !expires_at.nil?
+    return unless expires_at.nil?
 
     self.expires_at = DateTime.now + land_duty.estimated_days
   end
@@ -38,7 +38,7 @@ class CompletedDuty < ApplicationRecord
   end
 
   def denormalize_land_duty_incomplete
-    return if self.expired?
+    return if expired?
     land_duty.update(status: :incomplete, last_completed_by: last_completed_by)
   end
 end

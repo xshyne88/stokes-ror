@@ -11,8 +11,8 @@ describe "Land Query", :graphql do
         }
       GRAPHQL
     end
-      let(:fields_query) do
-        <<-'GRAPHQL'
+    let(:fields_query) do
+      <<-'GRAPHQL'
         query($landId: ID!) {
           land(landId: $landId) {
             id
@@ -22,13 +22,13 @@ describe "Land Query", :graphql do
           }
         }
       GRAPHQL
-      end 
+    end
 
     it "returns the specified land" do
       land = create(:land)
       land_id = global_id(land, Outputs::LandType)
 
-      result = execute query, as: build(:user), variables: { landId: land_id }
+      result = execute query, as: build(:user), variables: {landId: land_id}
 
       expect(result[:data][:land]).to include(id: land_id)
     end
@@ -38,15 +38,14 @@ describe "Land Query", :graphql do
       land = create(:land, name: name, latitude: lat, longitude: long)
       land_id = global_id(land, Outputs::LandType)
 
-      result = execute fields_query, as: build(:user), variables: { landId: land_id }
-
+      result = execute fields_query, as: build(:user), variables: {landId: land_id}
 
       expect(result[:data][:land]).to include(id: land_id, name: name, latitude: lat, longitude: long)
     end
   end
 
   describe "land duty meta data" do
-    query = 
+    query =
       <<-'GRAPHQL'
         query($landId: ID!) {
           land(landId: $landId) {
@@ -62,29 +61,29 @@ describe "Land Query", :graphql do
           }
         }
       GRAPHQL
-      it "displays all the duties associated with it" do
-        land = create(:land)
-        land_duty1 = create(:land_duty, land: land)
-        land_duty2 = create(:land_duty, land: land)
-        user = create(:user)
-  
-        result = execute query, as: build(:user, admin: true), variables: { landId: global_id(land, Outputs::LandType) }
-  
-        land_duties = result[:data][:land][:landDuties][:edges]
-        expect(land_duties.count).to eq(2)
-      end
+    it "displays all the duties associated with it" do
+      land = create(:land)
+      land_duty1 = create(:land_duty, land: land)
+      land_duty2 = create(:land_duty, land: land)
+      user = create(:user)
 
-      it "properly updates land duty status when a duty is completed" do
-        land = create(:land)
-        duty = create(:duty)
-        land_duty = create(:land_duty, land: land, duty: duty)
-        create(:completed_duty, land_duty: land_duty)
-  
-        result = execute query, as: build(:user, admin: true), variables: { landId: global_id(land, Outputs::LandType) }
-  
-        land_duties = result[:data][:land][:landDuties][:edges]
-        expect(land_duties.count).to eq(1)
-        expect(land_duties.first[:node][:status]).to eq("completed")
-      end
+      result = execute query, as: build(:user, admin: true), variables: {landId: global_id(land, Outputs::LandType)}
+
+      land_duties = result[:data][:land][:landDuties][:edges]
+      expect(land_duties.count).to eq(2)
+    end
+
+    it "properly updates land duty status when a duty is completed" do
+      land = create(:land)
+      duty = create(:duty)
+      land_duty = create(:land_duty, land: land, duty: duty)
+      create(:completed_duty, land_duty: land_duty)
+
+      result = execute query, as: build(:user, admin: true), variables: {landId: global_id(land, Outputs::LandType)}
+
+      land_duties = result[:data][:land][:landDuties][:edges]
+      expect(land_duties.count).to eq(1)
+      expect(land_duties.first[:node][:status]).to eq("completed")
+    end
   end
 end

@@ -25,6 +25,5 @@ module Mutations
     def before_now_error
       {completed_duty: nil, errors: ["cant set update time before now"]}
     end
-
   end
 end

@@ -51,7 +51,6 @@ describe CompletedDuty, type: :model do
     end
   end
 
-
   def now
     DateTime.now
   end

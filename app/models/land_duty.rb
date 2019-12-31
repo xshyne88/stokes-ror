@@ -14,7 +14,7 @@ class LandDuty < ApplicationRecord
   scope :active, -> { where(expired: false) }
 
   def has_any_completions?
-   completed_duties.count > 0
+    completed_duties.count > 0
   end
 
   private

@@ -19,8 +19,8 @@ module Outputs
 
     def active_completed_duty
       Loaders::AssociationLoader.for(LandDuty, :completed_duties).load(@object).then do |cd|
-        result = cd.detect { |c| !c.expired?}
-        result ? result : nil
+        result = cd.detect { |c| !c.expired? }
+        result || nil
       end
     end
 

@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   has_many :notes
-  
+
   has_secure_password
 
   def update_password(current:, new:)

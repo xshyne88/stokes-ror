@@ -4,14 +4,14 @@ describe "Update CompletedDuty Mutation", :graphql do
   describe "updateCompletedDuty" do
     let(:query) do
       <<~'GRAPHQL'
-        mutation($input: UpdateCompletedDutyInput!) {
-          updateCompletedDuty(input: $input) {
-errors { message }
-            completedDuty {
-              expiresAt
-              }
-            }
-          }
+                mutation($input: UpdateCompletedDutyInput!) {
+                  updateCompletedDuty(input: $input) {
+        errors { message }
+                    completedDuty {
+                      expiresAt
+                      }
+                    }
+                  }
       GRAPHQL
     end
 
@@ -19,9 +19,9 @@ errors { message }
       cd = create(:completed_duty, expires_at: DateTime.now)
       cd_id = global_id(cd, Outputs::CompletedDutyType)
 
-      new_time = (DateTime.now + 5.days).strftime('%Y-%m-%dT%H:%M:%SZ')
+      new_time = (DateTime.now + 5.days).strftime("%Y-%m-%dT%H:%M:%SZ")
       completed_duty_input = {
-        expiresAt: new_time
+        expiresAt: new_time,
       }
 
       result = execute query, as: build(:user), variables: {input: {
