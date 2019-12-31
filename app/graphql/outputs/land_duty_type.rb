@@ -12,6 +12,7 @@ module Outputs
     field :completed_duties, Outputs::CompletedDutyType.connection_type, null: true
     field :active_completed_duty, Outputs::CompletedDutyType, null: true
     field :completed_by, String, null: true
+    field :notes, Outputs::NoteType.connection_type, null: true
 
     def estimated_days
       @object.estimated_days
@@ -34,6 +35,10 @@ module Outputs
 
     def completed_duties
       Loaders::AssociationLoader.for(LandDuty, :completed_duties).load(@object)
+    end
+
+    def notes
+      Loaders::AssociationLoader.for(LandDuty, :notes).load(@object)
     end
 
     def self.loads(id)
