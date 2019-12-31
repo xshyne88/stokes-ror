@@ -5,10 +5,10 @@ class User < ApplicationRecord
   validates :password, length: {minimum: 8}, allow_nil: true
 
   has_many :completed_duties
-  has_many :notes, as: :noteable
 
   scope :active, -> { where(active: true) }
-
+  has_many :notes
+  
   has_secure_password
 
   def update_password(current:, new:)

@@ -90,9 +90,11 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.text "body"
     t.string "noteable_type", null: false
     t.bigint "noteable_id", null: false
+    t.bigint "created_by_id", null: false
     t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_by_id"], name: "index_notes_on_created_by_id"
     t.index ["deleted_at"], name: "index_notes_on_deleted_at"
     t.index ["noteable_type", "noteable_id"], name: "index_notes_on_noteable_type_and_noteable_id"
   end
@@ -114,4 +116,5 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
   add_foreign_key "completed_duties", "users"
   add_foreign_key "land_duties", "duties"
   add_foreign_key "land_duties", "lands"
+  add_foreign_key "notes", "users", column: "created_by_id"
 end

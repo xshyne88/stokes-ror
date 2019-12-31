@@ -6,6 +6,7 @@ class LandDuty < ApplicationRecord
   acts_as_paranoid
 
   has_many :completed_duties, -> { order(created_at: :desc) }
+  has_many :notes, as: :noteable, dependent: :restrict_with_error
 
   belongs_to :land
   belongs_to :duty
