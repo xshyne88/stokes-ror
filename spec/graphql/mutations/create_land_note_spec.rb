@@ -24,7 +24,6 @@ edges { node { body }}
       }
 
       result = execute query, as: build(:user), variables: {input: input}
-      pp result
 
       land_note = result[:data][:createLandNote]
       expect(land.notes.count).to eq(1)
