@@ -7,44 +7,52 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 chase = User.create!(
-  email: "chase@chase.com",
+  email: "chase",
   name: "Chase Philips",
-  password: "abc12345"
+  password: "abc12345",
+  admin: true
 )
 
 Audited.audit_class.as_user(chase) do
   User.create!(
-    email: "zhenson1989@gmail.com",
+    email: "Zach",
     name: "Zach Henson",
     password: "abc12345",
     admin: true
   )
 
   User.create!(
-    email: "jay@gmail.com",
+    email: "jay",
     name: "Jay",
-    password: "abc12345",
+    password: "jay12345",
     admin: false
   )
 
   User.create!(
-    email: "shay@gmail.com",
-    name: "shay",
-    password: "abc12345",
+    email: "shay",
+    name: "Shay",
+    password: "shay12345",
     admin: false
   )
 
   User.create!(
-    email: "amp@gmail.com",
-    name: "amp",
-    password: "abc12345",
+    email: "amp",
+    name: "Amp",
+    password: "amp12345",
     admin: false
   )
 
   User.create!(
-    email: "cliff@gmail.com",
-    name: "cliff",
-    password: "abc12345",
+    email: "cliff",
+    name: "Cliff",
+    password: "cliff12345",
+    admin: false
+  )
+
+  User.create!(
+    email: "guest",
+    name: "Guest",
+    password: "guest12345",
     admin: false
   )
 
