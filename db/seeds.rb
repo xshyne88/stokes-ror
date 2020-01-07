@@ -15,7 +15,7 @@ chase = User.create!(
 
 Audited.audit_class.as_user(chase) do
   User.create!(
-    email: "Zach",
+    email: "zach",
     name: "Zach Henson",
     password: "abc12345",
     admin: true
@@ -105,8 +105,4 @@ Audited.audit_class.as_user(chase) do
       LandDuty.create!(land: land, duty: duty)
     end
   end
-
-  CompletedDuty.create!(land_duty: LandDuty.first, user: User.first)
-  CompletedDuty.create!(land_duty: LandDuty.second, user: User.first, expires_at: DateTime.now)
-  CompletedDuty.create!(land_duty: LandDuty.third, user: User.first, expires_at: DateTime.now)
 end
