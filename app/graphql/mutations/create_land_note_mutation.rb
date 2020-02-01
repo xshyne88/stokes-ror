@@ -6,6 +6,7 @@ module Mutations
     argument :body, String, required: true
 
     field :land, Outputs::LandType, null: true
+    field :errors, function: Resolvers::Error.new
 
     policy ApplicationPolicy, :logged_in?
 
