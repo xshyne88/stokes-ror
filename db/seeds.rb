@@ -96,10 +96,6 @@ Audited.audit_class.as_user(chase) do
   LandDuty.create!(land: r, duty: signs)
   LandDuty.create!(land: s, duty: signs)
 
-  LandDuty.create!(land: b, duty: trash)
-  LandDuty.create!(land: b, duty: mowed)
-  LandDuty.create!(land: b, duty: weeds)
-
   Land.all.each do |land|
     [trash, mowed, weeds].each do |duty|
       LandDuty.create!(land: land, duty: duty)
