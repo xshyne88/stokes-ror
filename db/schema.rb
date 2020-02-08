@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_204314) do
+ActiveRecord::Schema.define(version: 2020_02_08_195858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,9 +112,22 @@ ActiveRecord::Schema.define(version: 2019_11_14_204314) do
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
   end
 
+  create_table "verified_completed_duties", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "completed_duty_id", null: false
+    t.bigint "extension", null: false
+    t.string "foo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["completed_duty_id"], name: "index_verified_completed_duties_on_completed_duty_id"
+    t.index ["user_id"], name: "index_verified_completed_duties_on_user_id"
+  end
+
   add_foreign_key "completed_duties", "land_duties"
   add_foreign_key "completed_duties", "users"
   add_foreign_key "land_duties", "duties"
   add_foreign_key "land_duties", "lands"
   add_foreign_key "notes", "users", column: "created_by_id"
+  add_foreign_key "verified_completed_duties", "completed_duties"
+  add_foreign_key "verified_completed_duties", "users"
 end

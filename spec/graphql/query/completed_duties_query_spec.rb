@@ -28,35 +28,37 @@ describe "CompletedDuties Query", :graphql do
     end
   end
 
-  describe "query books for average rating" do
-    query = <<-'GRAPHQL'
-        query($sortBy: CompletedDutySortByType, $sortDirection: SortDirectionType) {
-          completedDuties(sortBy: $sortBy, sortDirection: $sortDirection) {
+  describe "CompletedDuties Query", :graphql do
+    describe "query completedDuties verifiedCompletedDuties" do
+      query =
+      <<-'GRAPHQL'
+        query {
+          completedDuties {
             edges {
               node {
-                expiresAt
+                verifiedCompletedDuties {
+                  edges {
+                    node {
+                      id
+                      }
+                    }
+                  }
+                }
               }
             }
           }
-        }
-    GRAPHQL
-    it "sorts completed duties coming back" do
-      create(:completed_duty, expires_at: DateTime.now + 2)
-      create(:completed_duty, expires_at: DateTime.now + 3)
-      create(:completed_duty, expires_at: DateTime.now + 1)
+      GRAPHQL
+      it "returns a list of completedDuties and their verified completed duties" do
+          completed_duty = create(:completed_duty)
+          verified_completed_duty = create(:verified_completed_duty, completed_duty:completed_duty, extension: 1)
 
-      result = execute query, as: build(:user), variables: {
-        sortBy: "EXPIRES_AT",
-        sortDirection: "DESC",
-      }
+          result = execute query, as: build(:user)
 
-      execute query, as: build(:user)
+          node = result[:data][:completedDuties][:edges].first[:node]
+          vcd_id = node[:verifiedCompletedDuties][:edges].first[:node][:id]
 
-      # TODO: be less lazy
-      nodes = result[:data][:completedDuties][:edges].pluck(:node)
-      expect(nodes.first[:expiresAt]).to be_truthy
-      expect(nodes.second[:expiresAt]).to be_truthy
-      expect(nodes.third[:expiresAt]).to be_truthy
+          expect(vcd_id).to eq(global_id(verified_completed_duty, Outputs::VerifiedCompletedDutyType))
+      end
     end
   end
 end

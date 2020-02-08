@@ -16,6 +16,7 @@ class CompletedDuty < ApplicationRecord
   scope :most_recent, -> { order("created_at DESC").limit(5) }
 
   has_many :notes, as: :noteable
+  has_many :verified_completed_duties
 
   def mark_expired
     update(expired: true)

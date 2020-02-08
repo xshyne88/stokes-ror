@@ -7,6 +7,7 @@ module Outputs
     field :land_duty, Outputs::LandDutyType, null: true
     field :expires_at, GraphQL::Types::ISO8601DateTime, null: true
     field :expired, Boolean, null: true
+    field :verified_completed_duties, Outputs::VerifiedCompletedDutyType.connection_type, null: true
 
     def land_duty
       Loaders::AssociationLoader.for(CompletedDuty, :land_duty).load(@object)
@@ -14,6 +15,10 @@ module Outputs
 
     def user
       Loaders::AssociationLoader.for(CompletedDuty, :user).load(@object)
+    end
+
+    def verified_completed_duties
+      Loaders::AssociationLoader.for(CompletedDuty, :verified_completed_duties).load(@object)
     end
 
     def self.loads(id)
