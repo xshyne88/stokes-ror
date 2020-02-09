@@ -5,7 +5,7 @@ module Mutations
     argument :completed_duty_id, ID, required: true, loads: Outputs::CompletedDutyType
     argument :extension, Integer, required: true
 
-    field :verified_completed_duty, Outputs::CompletedDutyType, null: true
+    field :verified_completed_duty, Outputs::VerifiedCompletedDutyType, null: true
     field :errors, function: Resolvers::Error.new
     field :land, Outputs::LandType, null: true
 
