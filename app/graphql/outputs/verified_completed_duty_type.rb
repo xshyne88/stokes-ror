@@ -11,6 +11,7 @@ module Outputs
       Loaders::AssociationLoader.for(VerifiedCompletedDuty, :user).load(@object)
     end
 
+    # this needs to be fixed loader may be bugged
     def completed_duty
       Loaders::AssociationLoader.for(VerifiedCompletedDuty, :completed_duty).load(@object)
     end
