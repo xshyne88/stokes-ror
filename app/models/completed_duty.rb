@@ -22,6 +22,10 @@ class CompletedDuty < ApplicationRecord
     update(expired: true)
   end
 
+  def most_recent_one
+    land_duty.completed_duties.most_recent.first
+  end
+
   def most_recent_user_to_complete
     land_duty.completed_duties.most_recent.first.user
   end
