@@ -5,6 +5,7 @@ module Outputs
     global_id_field :id
     field :name, String, null: false
     field :description, String, null: false
+    field :estimated_days, Integer, null: false
 
     def self.loads(id)
       Duty.find(id)

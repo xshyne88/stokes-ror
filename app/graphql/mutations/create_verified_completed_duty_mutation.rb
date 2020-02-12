@@ -13,7 +13,6 @@ module Mutations
 
     def authorized_resolve
       vcd = VerifiedCompletedDuty.new(input.to_h.merge(user: current_user))
-      pp vcd
 
       if vcd.save
         {verified_completed_duty: vcd,

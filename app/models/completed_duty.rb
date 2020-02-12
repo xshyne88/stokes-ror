@@ -35,7 +35,7 @@ class CompletedDuty < ApplicationRecord
   def set_expires_at
     return unless expires_at.nil?
 
-    self.expires_at = DateTime.now + land_duty.estimated_days
+    self.expires_at = DateTime.now + land_duty.duty.estimated_days
   end
 
   def denormalize_land_duty_complete

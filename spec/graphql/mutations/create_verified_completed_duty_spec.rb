@@ -22,7 +22,6 @@ describe "Create VerifiedCompletedDuty Mutation", :graphql do
       }
 
       result = execute query, as: build(:user), variables: {input: input}
-      pp result
 
       expect(VerifiedCompletedDuty.count).to eq(1)
     end
